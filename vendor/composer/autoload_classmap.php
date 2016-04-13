@@ -11,7 +11,7 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Events\\Event' => $baseDir . '/app/Events/Event.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-    'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
+    'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/Admins/AdminController.php',
     'App\\Http\\Controllers\\Admins\\DashboardController' => $baseDir . '/app/Http/Controllers/Admins/DashboardController.php',
     'App\\Http\\Controllers\\Admins\\FormController' => $baseDir . '/app/Http/Controllers/Admins/FormController.php',
     'App\\Http\\Controllers\\Auth\\AuthController' => $baseDir . '/app/Http/Controllers/Auth/AuthController.php',

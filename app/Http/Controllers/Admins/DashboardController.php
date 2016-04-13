@@ -3,8 +3,22 @@ use App\Http\Controllers\Controller; //เรียกใช้ Controller ห�
  
 class DashboardController extends Controller {
 
+ public function __construct()
+ {
+  $this->middleware('auth');
+ }
+
  public function getIndex(){
- return view('admin.dashboard.index');
+
+     $admin = \Auth::getUser();
+     
+     $department_id= $admin->deparment_id;
+     
+     $admin->first_name = 'asdf';
+     $admin->last_name= 'jkl';
+     $admin->save();
+
+ return view('admin.dashboard.index', compact('admin'));
  }
 
  

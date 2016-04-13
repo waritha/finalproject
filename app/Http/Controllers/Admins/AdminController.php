@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    protected $redirectPath = '/admin/index';
+    protected $loginPath = '/admin/login';
     /**
      * Display a listing of the resource.
      *
@@ -83,5 +86,25 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getLogin()
+    {
+        return view('admin.login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        dd('postlogin', $request);
+
+//        if (Auth::attempt(['username' => $email, 'password' => $password])) {
+//            // Authentication passed...
+//            return redirect()->intended('dashboard');
+//        }
+    }
+
+    public function getRegister()
+    {
+        return view('admin.register');
     }
 }

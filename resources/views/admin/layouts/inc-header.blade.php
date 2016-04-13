@@ -12,7 +12,7 @@
 <li><a href="{{url('admin/manualuser')}}"><i class="glyphicon glyphicon-book"></i> คู่มือการใช้งาน</a>
 </li>
 <li class="divider"></li>
-<li><a href="{{url('admin/logoutuser')}}"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a>
+<li><a href="{{url('admin/logout')}}"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a>
 </li>
 </ul>
 <!-- /.dropdown-user -->
