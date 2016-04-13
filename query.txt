@@ -1,0 +1,152 @@
+SELECT SUM(G.ge_hour) 
+FROM  activity A, ge_activity G, mapping_ge_activity M
+WHERE A.activity_id = M.activity_id and M.ge_id = G.ge_id
+and A.activity_id = 10
+
+
+
+
+SELECT SUM(G.ge_hour) 
+FROM  activity A, ge_activity G, mapping_ge_activity M,participation P
+WHERE A.activity_id = M.activity_id and M.ge_id = G.ge_id  and P.activity_id = A.activity_id
+and P.student_id = '550510555' and P.join_status = 1
+
+
+//จอย
+SELECT *
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111
+
+
+//คณะบังคับ
+SELECT a_name, ge_hour
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111 and g.ge_category = 1 and a.dept_id = 10 and g.ge_year = $stu_reg
+//รวม
+SELECT SUM(G.ge_hour) 
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111 and g.ge_category = 1 and a.dept_id = 10 and g.ge_year = 2555
+
+
+//คณะเลือก
+SELECT a_name, ge_hour
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111 and g.ge_category = 2 and a.dept_id = 10 and g.ge_year = $stu_reg
+
+//ภาคบังคับ
+SELECT a_name, ge_hour
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111  and a.dept_id >=1 and  a.dept_id <=9 and g.ge_category = 1 and g.ge_year = $stu_reg
+
+//ภาคเลือก
+SELECT a_name, ge_hour
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111  and a.dept_id >=1 and  a.dept_id <=9 and g.ge_category = 2 and g.ge_year = $stu_reg
+
+//ชมรมและอื่นๆ
+SELECT a_name, ge_hour
+FROM participation_1 p, activity a,mapping_ge_activity m,ge_activity g
+where p.activity_id = a.activity_id and a.activity_id = m.activity_id and m.ge_id = g.ge_id and p.student_id = 111111111 and g.ge_category = 3 and a.dept_id = 11 and g.ge_year = $stu_reg
+
+//คำนวณชั่วโมงคณะบังคับจาก GE
+SELECT SUM(G.ge_hour) as fac_ca_1
+FROM  activity A, ge_activity G, mapping_ge_activity M, student S
+WHERE S.year_reg = G.ge_year and G.ge_category = 1 and G.ge_year = 2555 and A.a_year = 2555 and G.ge_id = M.ge_id and M.activity_id = A.activity_id and A.dept_id = 10 and S.student_id = 111111111
+
+
+
+<?php
+        $result_dept = $mysqli->query("SELECT * FROM department");
+        ?>
+        <label ><strong>ภาควิชา/สังกัด</strong></label>
+        <!-- <select name="student_dept" >
+          <option value="ภาควิชาชีววิทยา" >ภาควิชาชีววิทยา</option>
+          <option value="ภาควิชาเคมี" >ภาควิชาเคมี</option>
+          <option value="ภาควิชาธรณีวิทยา" >ภาควิชาธรณีวิทยา</option>
+          <option value="ภาควิชาฟิสิกส์และวัสดุศาสตร์" >ภาควิชาฟิสิกส์และวัสดุศาสตร์</option>
+          <option value="ภาควิชาเคมีอุตสาหกรรม" >ภาควิชาเคมีอุตสาหกรรม</option>
+          <option value="ภาควิชาคณิตศาสตร์" >ภาควิชาคณิตศาสตร์</option>
+          <option value="ภาควิชาสถิติ" >ภาควิชาสถิติ</option>
+          <option value="ภาควิชาวิทยาการคอมพิวเตอร์" >ภาควิชาวิทยาการคอมพิวเตอร์</option>
+          <option value="สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม" >สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม</option>
+          <option value="สโมสรนักศึกษา" >สโมสรนักศึกษา</option>
+        </select> -->
+        <select name="student_dept" >
+           <?php while ($row = $result_dept->fetch_assoc()) {
+              echo"<option value='".$row["dept_id"]."' >".$row["dept_name"]."</option>";
+            }
+          ?>
+        </select> 
+
+$users = DB::select("SELECT S.*,A.*,P.*
+  FROM student S,activity A ,participation P
+  WHERE S.student_id = A.student_id and A.activity_id = P.activity_id");
+
+//student.php
+$users = DB::select("SELECT S.*,D.*,P.*
+	FROM student S,department D ,p_status P
+	WHERE S.student_dept = D.dept_id and S.p_status = P.p_status_id");
+
+
+	<td><?php echo $user->student_id; ?></td>
+        <td><?php   echo $user->first_name;?></td>
+        <td><?php   echo $user->last_name;?></td>
+        <td><?php   echo $user->year_reg;?></td>
+        <td><?php   echo $user->semester_ge;?></td>
+        <td><?php   echo $user->p_status_name;?></td>
+        <td><?php   echo $user->dept_name;?></td>
+        
+
+//result_search_student
+<?php
+$users = DB::select("SELECT S.*,D.*,P.*
+	FROM student S,department D ,p_status P
+	WHERE S.student_dept = D.dept_id and S.p_status = P.p_status_id and 
+		(S.student_id LIKE '%".$keyword."%' or 
+		S.first_name  LIKE '%".$keyword."%' or 
+		S.last_name   LIKE '%".$keyword."%')");
+?>
+
+//test in database
+SELECT a.a_name, s.first_name, s.last_name
+FROM activity a, participation p, student s
+WHERE a.activity_id = p.activity_id
+AND p. student_id = s.student_id
+
+//editstudent
+
+<div class="large-4 columns">
+      <label>สถานะ(ผ่าน/ไม่ผ่าน) </br> * ไม่สามารถแก้ไขได้ เนื่องจากเป็นผลจากการคำนวณของโปรแกรม</label>
+      <input type="text" name="p_status" value="<?php echo"$std_p_status";
+      /*$ss=$std_p_status;
+      if($ss == 1){
+        echo "ยังประมวลผลไม่ได้";
+            
+            "$std_p_status;"
+          }
+          elseif($ss == 2){
+            echo "2";
+            $std_p_status == 2;
+          }
+          elseif($ss == 3){
+            echo "3";
+            $std_p_status == 3;
+          }*/
+      ?>" readonly >
+      
+    </div>
+
+
+<select name="student_dept" >
+          <option value="001" >ภาควิชาชีววิทยา</option>
+          <option value="002" >ภาควิชาเคมี</option>
+          <option value="003" >ภาควิชาธรณีวิทยา</option>
+          <option value="004" >ภาควิชาฟิสิกส์และวัสดุศาสตร์</option>
+          <option value="005" >ภาควิชาเคมีอุตสาหกรรม</option>
+          <option value="006" >ภาควิชาคณิตศาสตร์</option>
+          <option value="007" >ภาควิชาสถิติ</option>
+          <option value="008" >ภาควิชาวิทยาการคอมพิวเตอร์</option>
+          <option value="009" >สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม</option>
+          <option value="10" >สโมสรนักศึกษา</option>
+          <option value="11" >ชมรมและอื่นๆ</option>
+        </select> 
