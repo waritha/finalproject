@@ -2,6 +2,13 @@
 
 //Form backup
 
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+
+
 Route::controller('admin/index','Admins\DashboardController');
 
 Route::get('admin/detailuser',"Admins\FormController@getdatailuser");

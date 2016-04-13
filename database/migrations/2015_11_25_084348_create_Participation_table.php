@@ -14,12 +14,12 @@ class CreateParticipationTable extends Migration
     {
         Schema::create('Participation',function(Blueprint $table)
         {
-        $table -> integer('student_id',10); 
-        $table -> integer('activity_id',2);    
-        $table -> bit('a_status1'); 
-        $table -> bit('a_status2'); 
-        $table -> bit('a_status3'); 
-        $table -> char('join_status',1);
+        $table->integer('student_id',10); 
+        $table->integer('activity_id',2);    
+        $table->bit('a_status1'); 
+        $table->bit('a_status2'); 
+        $table->bit('a_status3'); 
+        $table->char('join_status',1);
         
         });
     }
@@ -31,6 +31,6 @@ class CreateParticipationTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('Participation');
     }
 }

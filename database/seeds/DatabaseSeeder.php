@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this -> call('StudentTableSeeder');
-        $this -> command->info('Student Table Seeded!')
+        $this -> command->info('Student Table Seeded!');
 
         //Model::reguard();
     }

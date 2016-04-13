@@ -14,13 +14,13 @@ class CreateActivityTable extends Migration
     {
         Schema::create('Activity',function(Blueprint $table)
         {
-        $table -> integer('activity_id',2); 
-        $table -> char('a_year', 4); 
-        $table -> string('a_name' , 50); 
-        $table -> string('a_place' , 40); 
-        $table -> date('start_date'); 
-        $table -> date('finish_date'); 
-        $table -> char('dept_id' , 3); 
+        $table->integer('activity_id',2); 
+        $table->char('a_year', 4); 
+        $table->string('a_name' , 50); 
+        $table->string('a_place' , 40); 
+        $table->date('start_date'); 
+        $table->date('finish_date'); 
+        $table->char('dept_id' , 3); 
         
         });
     }
@@ -32,6 +32,6 @@ class CreateActivityTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('Activity');
     }
 }

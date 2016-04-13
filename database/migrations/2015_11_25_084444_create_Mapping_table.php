@@ -22,6 +22,6 @@ class CreateMappingTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('admins');
     }
 }

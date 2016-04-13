@@ -14,14 +14,11 @@ class CreateGeActivityTable extends Migration
     {
         Schema::create('Ge_activity',function(Blueprint $table)
         {
-        $table -> integer('ge_id',2); 
-        $table -> string('ge_name' , 30); 
-        $table -> char('ge_category', 1); 
-        $table -> integer('ge_hour' , 2); 
-        $table -> char('ge_year' , 4); 
-
-
-       
+        $table->integer('ge_id',2); 
+        $table->string('ge_name' , 30); 
+        $table->char('ge_category', 1); 
+        $table->integer('ge_hour' , 2); 
+        $table->char('ge_year' , 4);
         });
     }
 
@@ -32,6 +29,6 @@ class CreateGeActivityTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('Ge_activity');
     }
 }
