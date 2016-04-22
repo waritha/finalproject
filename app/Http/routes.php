@@ -7,8 +7,8 @@ Route::get('admin/login', 'Auth\AuthController@getLogin');
 Route::post('admin/login', 'Auth\AuthController@postLogin');
 Route::get('admin/logout', 'Auth\AuthController@getLogout');
 
-Route::get('admin/register', 'Auth\AuthController@getRegister');
-Route::post('admin/register', 'Auth\AuthController@postRegister');
+Route::get('admin/register', 'UserController@getRegister');
+Route::post('admin/register', 'UserController@postRegister');
 
 Route::get('admin/index', 'Admins\DashboardController@getIndex');
 Route::controller('admin/index','Admins\DashboardController');
