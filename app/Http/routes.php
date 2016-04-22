@@ -1,7 +1,7 @@
 <?php
 
 //Form backup
-
+Route::get('/', 'Auth\AuthController@getLogin');
 // Authentication routes...
 Route::get('admin/login', 'Auth\AuthController@getLogin');
 Route::post('admin/login', 'Auth\AuthController@postLogin');
