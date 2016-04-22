@@ -120,6 +120,13 @@
         return false;
     });
 
+    $("#student_id").bind("keypress", function(event) {
+    if(event.which == 13) {
+    event.preventDefault();
+        // TRIGGER YOUR FUNCTION
+        $("#addpart").trigger("click");
+    }
+});
 </script>
 </html>
 

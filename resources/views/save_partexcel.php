@@ -58,4 +58,5 @@ $mysqli->close();
 
 ?>
 
-<a href="http://localhost/laravel_project/public/data_participation" target="_parent">ต่อไป</a>
+<a href="{{url('data_participation')}}" target="_parent">ต่อไป</a>
+

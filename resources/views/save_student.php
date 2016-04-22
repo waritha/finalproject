@@ -64,4 +64,4 @@ $mysqli->close();
 
 ?>
 
-<a href="http://localhost/laravel_project/public/datastudent" target="_parent">ต่อไป</a>
+<a href="../../public/datastudent" target="_parent">ต่อไป</a>
