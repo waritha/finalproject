@@ -8,6 +8,10 @@
     <script                 src="foundation/js/vendor/modernizr.js"></script>
     
 </head>
+<?php
+    $dept_data = $admin->department_id;
+    /*echo "$dept_data";*/
+?>
 
 <?php
     
@@ -18,8 +22,13 @@
 
         $data_stu = DB::table('student')->get();
 
-        $data_stu = DB::select("SELECT *   FROM student s where s.semester_ge = $semester_ge and s.year_reg= $year");
+        $data_stu = DB::select("SELECT *   FROM student s where s.semester_ge = $semester_ge and s.year_reg= $year and s.student_dept = $dept_data");
         
+        $data_stu1 = DB::table('student')->get();
+
+        $data_stu1 = DB::select("SELECT *   FROM student s where s.semester_ge = $semester_ge and s.year_reg= $year ");
+        
+
         $data_setting = DB::table('setting')->get();
         $data_setting = DB::select("SELECT * FROM setting WHERE year = $year");
 
@@ -38,11 +47,52 @@
 <body>
 
 <fieldset>
-    <legend><?php echo "ปีการศึกษา $year ภาคการศึกษา $semester_ge"; ?></legend>
+    <legend><?php echo "ปีการศึกษา $year ภาคการศึกษา $semester_ge "; 
+   
+            if($dept_data == 1){
+                echo "ภาควิชาชีววิทยา";
+            }
+            elseif($dept_data == 2){
+                echo "ภาควิชาเคมี";
+            }
+            elseif($dept_data == 3){
+                echo "ภาควิชาธรณีวิทยา";
+            }
+            elseif($dept_data == 4){
+                echo "ภาควิชาฟิกสิกส์และวัสดุศาสตร์";
+            }
+            elseif($dept_data == 5){
+                echo "ภาควิชาเคมีอุตสาหกรรม";
+            }
+            elseif($dept_data == 6){
+                echo "ภาควิชาคณิตศาสตร์";
+            }
+            elseif($dept_data == 7){
+                echo "ภาควิชาสถิติ";
+            }
+            elseif($dept_data == 8){
+                echo "ภาควิชาวิทยาการคอมพิวเตอร์";
+            }
+            elseif($dept_data == 9){
+                echo "สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม";
+            }
+            elseif($dept_data == 10){
+                echo "สโมสรนักศึกษา";
+            }
+            elseif($dept_data == 11){
+                echo "ชมรมและอื่นๆ";
+            }
+
+
+    ?>
+
+    </legend>
     <p>
     <strong>ตารางประมวลนักศึกษาที่ผ่านและไม่ผ่านกระบวนวิชา</strong>
 
-     <div class="row">
+
+
+<div class="row">
     <table border=0 role="grid" id="table">
         <?php
                 foreach($data_setting as $data_setting){
@@ -213,7 +263,7 @@
                 $dept_sum1=$dept_sum->dept33;
                 }
                 
-                if($fac11>=$fac_ca_1 and $fac33>$data_setfac and $dept_11 >=$dept_ca_1 and $dept_sum1>$data_setdept and $club22>$data_setclub ){
+                if($fac11>=$fac_ca_1 and $fac33>=$data_setfac and $dept_11 >=$dept_ca_1 and $dept_sum1>$data_setdept and $club22>$data_setclub ){
                     
                     $sql1 = DB::table('student')->get();
                     $sql1 = "UPDATE student SET p_status = 3 WHERE student_id = $student_id";
@@ -227,6 +277,8 @@
                     DB::select($sql2);
 
                     echo '<span style="color:#FF0000;text-align:center;">ไม่ผ่าน</span>';
+                    /*echo"$dept_ca_1 ";*/
+
                 }
 
 
@@ -243,10 +295,19 @@
         
         <?php } ?>
 
-    </table>
+    </table>    
+    </div>
+<p>
+    <?php 
 
+    echo "string";
+
+
+    ?>
+</br>
+</br>
+<a class="btn btn-default" href="" role="button">ออกรายงาน</a>
 </fieldset>
-
 
 
 

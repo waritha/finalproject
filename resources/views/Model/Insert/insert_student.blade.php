@@ -17,6 +17,11 @@
 			$msg="";
 		}
 	?>
+	<?php
+
+    $dept_data = $admin->department_id;
+
+?>
 
 	<form action="{{ url('/add')}}" method="post">
 	<fieldset>
@@ -53,7 +58,13 @@
     $result_dept = $mysqli->query("SELECT * FROM department");
 ?>
 
-    <div class="large-4 columns">
+<?php 
+ 
+ if($dept_data == 10){
+
+ 	?>
+
+ 	<div class="large-4 columns">
       <label><strong>ภาควิชา/สังกัด</strong></label>
         <select name="student_dept" >
            <?php while ($row = $result_dept->fetch_assoc()) {
@@ -63,6 +74,119 @@
         </select>
     </div>
   	</div>
+
+ 	<?php
+
+ }elseif ($dept_data == 8) {
+ 	?>
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="8" >ภาควิชาวิทยาการคอมพิวเตอร์</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 9) {
+ 	?>
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="9" >สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม</option>
+        </select>
+    </div>
+  	</div>
+
+ <?php
+ }elseif ($dept_data == 7) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="7" >ภาควิชาสถิติ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 6) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="6" >ภาควิชาคณิตศาสตร์</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 5) {
+ 	?>
+ 	
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="5" >ภาควิชาเคมีอุตสาหกรรม</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 4) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="4" >ภาควิชาฟิกสิกส์และวัสดุศาสตร์</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 3) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="3" >ธรณีวิทยา</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 2) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="2" >ภาควิชาเคมี</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 1) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="student_dept" >
+          <option value ="1" >ภาควิชาชีววิทยา</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }
+
+?>
+    
 
 
   	<div class="row">

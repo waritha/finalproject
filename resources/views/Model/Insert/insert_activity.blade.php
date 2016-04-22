@@ -8,6 +8,13 @@
 	<link rel="stylesheet" href="foundation/css/foundation.css" />
     <script                 src="foundation/js/vendor/modernizr.js"></script>
 </head>
+
+<?php 
+
+       /* echo "$year";*/
+        $dept_data = $admin->department_id;
+        /*echo "$dept_data";*/
+?>
 <body>
 
 	<form action="{{ url('/addact')}}" method="post">
@@ -40,6 +47,12 @@
     $result_dept = $mysqli->query("SELECT * FROM department");
 ?>
 
+<?php 
+ 
+ if($dept_data == 10){
+
+ 	?>
+
 		<div class="large-4 columns">
 			<label><strong>ภาควิชาที่จัดกิจกรรม</strong></label>
 			<select name="dept_id" >
@@ -51,6 +64,138 @@
 			
 		</div>
 	</div>
+
+
+	<?php
+
+ }elseif ($dept_data == 8) {
+ 	?>
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="8" >ภาควิชาวิทยาการคอมพิวเตอร์</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 9) {
+ 	?>
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="9" >สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ <?php
+ }elseif ($dept_data == 7) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="7" >ภาควิชาสถิติ</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 6) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="6" >ภาควิชาคณิตศาสตร์</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 5) {
+ 	?>
+ 	
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="5" >ภาควิชาเคมีอุตสาหกรรม</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 4) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="4" >ภาควิชาฟิกสิกส์และวัสดุศาสตร์</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 3) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="3" >ธรณีวิทยา</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 2) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="2" >ภาควิชาเคมี</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }elseif ($dept_data == 1) {
+ 	?>
+
+ 	<div class="large-4 columns">
+      <label><strong>ภาควิชา/สังกัด</strong></label>
+        <select name="dept_id" >
+          <option value ="1" >ภาควิชาชีววิทยา</option>
+          <option value ="10" >สโมสรนักศึกษา</option>
+          <option value ="11" >ชมรมและอื่นๆ</option>
+        </select>
+    </div>
+  	</div>
+
+ 	<?php
+ }
+
+?>
+
 
 	<div class="row">
 		<div class="large-3 columns">
@@ -78,6 +223,12 @@
 	<fieldset>
     <legend>ตารางแสดงรายละเอียดข้อมูลกิจกรรม GE</legend>
 	 <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
+
+	 <div class="row">
+	 	<div class="large-3 columns">
+	<input id="filter" type="text" class="form-control" placeholder="ป้อนคำค้นที่ต้องการ">
+		</div>
+	</div>
 
 	<div class="row">
 	    <table border=0 role="grid" class="searchable" >
@@ -148,4 +299,21 @@
 
 
 </html>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    (function ($) {
+
+        $('#filter').keyup(function () {
+        	console.log("xx");
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+});</script>
 @stop

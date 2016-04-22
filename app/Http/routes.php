@@ -10,11 +10,15 @@ Route::get('admin/logout', 'Auth\AuthController@getLogout');
 Route::get('admin/register', 'Auth\AuthController@getRegister');
 Route::post('admin/register', 'Auth\AuthController@postRegister');
 
-Route::get('/', 'Admins\DashboardController@getIndex');
+Route::get('admin/index', 'Admins\DashboardController@getIndex');
 Route::controller('admin/index','Admins\DashboardController');
 
 Route::get('admin/detailuser',"Admins\FormController@getdatailuser");
+
 Route::get('admin/setuser',"Admins\FormController@getsetuser");
+Route::post('/edituser',"Admins\FormController@edituser");
+
+
 Route::get('admin/manualuser',"Admins\FormController@getmanualuser");
 Route::get('admin/logoutuser',"Admins\FormController@logoutuser");
 
@@ -33,21 +37,27 @@ Route::get('admin/partexcel',"Admins\FormController@partexcel");
 /*  EX Route::get('part_one/{activity_id}',"Model\ParticipationController@part_one");*/
 
 //link UI
-Route::get('datastudent', function(){
+
+Route::get('datastudent',"Model\StudentController@page_student");
+
+/*Route::get('datastudent', function(){
     return view('Model/student');
 });
-
-Route::get('datage_activity', function(){
+*/
+Route::get('datage_activity',"Model\GEactivityController@page_ge_activitys");
+/*Route::get('datage_activity', function(){
     return view('Model/ge_activity');
-});
+});*/
 
-Route::get('data_activity', function(){
+Route::get('data_activity',"Model\ActivityController@page_activitys");
+/*Route::get('data_activity', function(){
     return view('Model/activity');
-});
+});*/
 
-Route::get('data_participation', function(){
+Route::get('data_participation',"Model\ParticipationController@page_data_participation");
+/*Route::get('data_participation', function(){
     return view('Model/participation');
-});
+});*/
 
 //test student
 Route::get('check-connect',function(){
@@ -114,13 +124,15 @@ Route::get('search/student',function(){
     return view('ge_activity');
 });
 */
+Route::post('ge_activity_1',"Model\GEactivityController@ge_activity_1");
+
 Route::get('geform',"Model\GEactivityController@geform"); 
 Route::post('addge',"Model\GEactivityController@addge");
 
 Route::get('editge/{ge_id}',"Model\GEactivityController@editActivity");
 Route::post('editge',"Model\GEactivityController@updateActivity");
 
-Route::get('deletege/{ge_id}',"Model\GEactivityController@deleteActivity");
+Route::get('deletege/{ge_id}/{year}',"Model\GEactivityController@deleteActivity");
 Route::post('delge',"Model\GEactivityController@delge");
 
 //END!!
@@ -169,17 +181,20 @@ Route::get('delpart/{student_id}/{act_id}',"Model\ParticipationController@delpar
 
 
 // Start Report Student
-Route::get('report_student', function(){
+Route::get('report_student',"Model\ReportController@page_report_student");
+
+/*Route::get('report_student', function(){
     return view('Model/report_student');
-});
+});*/
 
 Route::get('detail_stu/{student_id}',"Model\ReportController@detail_stu");
 //END Report Student!!
 
 //Start setting 
-Route::get('setting', function(){
+Route::get('setting',"Model\SettingController@page_setting");
+/*Route::get('setting', function(){
     return view('Model/setting');
-});
+});*/
 
 Route::get('set_del/{year}',"Model\SettingController@set_del");
 Route::get('addformsetting',"Model\SettingController@addformsetting");
@@ -189,17 +204,19 @@ Route::post('setedit',"Model\SettingController@setedit");
 //END setting!!
 
 // Start Report Activity
-Route::get('report_activity', function(){
+Route::get('report_activity',"Model\ReportController@page_report_activity");
+/*Route::get('report_activity', function(){
     return view('Model/report_activity');
-});
+});*/
 
 Route::get('detail_act/{activity_id}',"Model\ReportController@detail_act");
 //END Report Activity!!
 
 // Start Report Conclude
-Route::get('report_conclude', function(){
+Route::get('report_conclude',"Model\ReportController@page_report_conclude");
+/*Route::get('report_conclude', function(){
     return view('Model/report_conclude');
-});
+});*/
 
 Route::post('data_report',"Model\ReportController@data_report");
 /*Route::get('data_report/{year}/{semester_ge}',"Model\ReportController@data_report");*/

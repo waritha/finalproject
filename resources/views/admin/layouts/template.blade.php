@@ -29,7 +29,59 @@
  <span class="icon-bar"></span>
  <span class="icon-bar"></span>
  </button>
- <a class="navbar-brand" href="{{url('admin/index')}}">ระบบจัดการข้อมูล</a>
+
+<?php
+
+    $dept_data = $admin->department_id;
+?>
+
+ <a class="navbar-brand" href="{{url('admin/index')}}">
+ <?php 
+if($dept_data == 1){
+                echo "ภาควิชาชีววิทยา";
+            }
+            elseif($dept_data == 2){
+                echo "ภาควิชาเคมี";
+            }
+            elseif($dept_data == 3){
+                echo "ภาควิชาธรณีวิทยา";
+            }
+            elseif($dept_data == 4){
+                echo "ภาควิชาฟิกสิกส์และวัสดุศาสตร์";
+            }
+            elseif($dept_data == 5){
+                echo "ภาควิชาเคมีอุตสาหกรรม";
+            }
+            elseif($dept_data == 6){
+                echo "ภาควิชาคณิตศาสตร์";
+            }
+            elseif($dept_data == 7){
+                echo "ภาควิชาสถิติ";
+            }
+            elseif($dept_data == 8){
+                echo "ภาควิชาวิทยาการคอมพิวเตอร์";
+            }
+            elseif($dept_data == 9){
+                echo "สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม";
+            }
+            elseif($dept_data == 10){
+                echo "สโมสรนักศึกษา";
+            }
+            elseif($dept_data == 11){
+                echo "ชมรมและอื่นๆ";
+            }
+
+            
+            $name =$admin->first_name;
+            $last =$admin->last_name;
+
+            echo "       $name $last";
+
+           /* {{$admin->first_name}} {{$admin->last_name}}*/
+?>
+
+
+ </a>
  </div>
  <!-- /.navbar-header -->
  @include('admin.layouts.inc-header')

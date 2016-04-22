@@ -14,9 +14,9 @@ class DashboardController extends Controller {
      
      $department_id= $admin->deparment_id;
      
-     $admin->first_name = 'asdf';
+    /* $admin->first_name = 'asdf';
      $admin->last_name= 'jkl';
-     $admin->save();
+     $admin->save();*/
 
  return view('admin.dashboard.index', compact('admin'));
  }

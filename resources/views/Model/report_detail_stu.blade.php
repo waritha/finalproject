@@ -10,7 +10,7 @@
 <body>
 
     <?php
-    use DB;
+    
         $stu_id                 = $stu_data['student_id'];
         $stu_firstname          = $stu_data['first_name'];
         $stu_lastname           = $stu_data['last_name'];
@@ -560,7 +560,11 @@
     </div>
 </br>
 
+<a class="btn btn-default" href="" role="button">ออกรายงาน</a>
 </fieldset>
+
+
+
 
 </body>
 @stop

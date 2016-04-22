@@ -57,8 +57,9 @@
 		<div class="large-3 columns">
 			<label>ประเภทกิจกรรม</label>
 			<select name="ge_category" >
-				<option value="กิจกรรมที่เลือกเข้าร่วม" >กิจกรรมที่เลือกเข้าร่วม</option>
-          		<option value="กิจกรรมบังคับเข้าร่วม" >กิจกรรมบังคับเข้าร่วม</option>
+				<option value="1" >กิจกรรมที่เลือกเข้าร่วม</option>
+          		<option value="2" >กิจกรรมบังคับเข้าร่วม</option>
+          		<option value="3" >กิจกรรมของชมรมและอื่นๆ</option>
         	</select>
 		</div>
 	

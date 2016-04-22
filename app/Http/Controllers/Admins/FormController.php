@@ -6,16 +6,35 @@ use Excel;
  
 class FormController extends Controller {
 
+
+	public function __construct(){
+  		$this->middleware('auth');
+ 	}
+
+ 	public function getIndex(){
+
+     $admin = \Auth::getUser();
+     
+     $department_id= $admin->deparment_id;
+
+ 	return view('admin.dashboard.index', compact('admin'));
+ 	}
+
+
+
  public function getdatailuser(){
- return view('admin.dashboard.detailuser');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.detailuser',compact('admin'));
  }
 
  public function getsetuser(){
- return view('admin.dashboard.setuser');
+    $admin = \Auth::getUser();
+ return view('admin.dashboard.setuser',compact('admin'));
  }
 
  public function getmanualuser(){
- return view('admin.dashboard.manualuser');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.manualuser',compact('admin'));
  }
 
  public function logoutuser(){
@@ -23,27 +42,33 @@ class FormController extends Controller {
  }
 
  public function dataexcel(){
- return view('admin.dashboard.dataexcel');
+ 	$admin = \Auth::getUser();
+ return view('admin.dashboard.dataexcel',compact('admin'));
  }
 
  public function report(){
- return view('admin.dashboard.report');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.report',compact('admin'));
  }
 
  public function setpage1(){
- return view('admin.dashboard.set-page1');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.set-page1',compact('admin'));
  }
 
  public function setpage2(){
- return view('admin.dashboard.set-page2');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.set-page2',compact('admin'));
  }
 
  public function setpage3(){
- return view('admin.dashboard.set-page3');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.set-page3',compact('admin'));
  }
 
  public function joinact(){
- return view('admin.dashboard.joinact');
+  $admin = \Auth::getUser();
+ return view('admin.dashboard.joinact',compact('admin'));
  }
 
 public function arrayMap($transactions){
@@ -62,8 +87,48 @@ public function arrayMap($transactions){
         $act_data =$this->arrayMap($act_data);
         $act_data = $act_data[0];
         return view('admin.dashboard.partexcel')->with("act_data",$act_data);*/
-
- return view('admin.dashboard.partexcel');
+        $admin = \Auth::getUser();
+ return view('admin.dashboard.partexcel',compact('admin'));
  }
+
+ public function edituser(){
+        $admin = \Auth::getUser();
+
+
+    $id_data        = Input::get('id');
+    $first_data     = Input::get('first_name');
+    $last_data      = Input::get('last_name');
+    $dept_data      = Input::get('department_id');
+    $username_data    = Input::get('username');
+    $password_data    = Input::get('password');
+    $remember_token_data= Input::get('remember_token');
+    $created_at_data    = Input::get('created_at');
+    $updated_at_data    = Input::get('updated_at');
+
+    $id_data        = $admin->id;
+    $dept_data      = $admin->department_id;
+    $username_data    = $admin->username;
+    $password_data    = $admin->password;
+    $remember_token_data= $admin->remember_token;
+    $created_at_data    = $admin->created_at;
+    $updated_at_data    = $admin->updated_at;
+    
+
+
+    $sql = "UPDATE admins SET 
+                   first_name =  '$first_data',
+                   last_name = '$last_data',
+                   department_id = '$dept_data',
+                   username = '$username_data',
+                   password = '$password_data',
+                   remember_token = '$remember_token_data',
+                   created_at = '$created_at_data',
+                   updated_at = '$updated_at_data' WHERE id = $id_data ";
+
+     DB::select($sql);
+
+ return view('admin.dashboard.set-page1',compact('admin'));
+ }
+
 
 }

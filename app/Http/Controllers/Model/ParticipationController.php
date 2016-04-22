@@ -7,16 +7,34 @@ use Excel;
 class ParticipationController extends Controller
 {
 
+    public function __construct(){
+    $this->middleware('auth');
+    }
+
+    public function getIndex(){
+     $admin = \Auth::getUser();
+     
+     $department_id= $admin->deparment_id;
+
+    return view('admin.dashboard.index', compact('admin'));
+    }
+
 	public function arrayMap($transactions){
 		return array_map(function($object){
           return (array) $object;
       }, $transactions);
 	}
 
+    public function page_data_participation(){
 
+        $admin = \Auth::getUser();
+        return view('Model.participation', compact('admin'));
+    }
 
     public function partselect($activity_id){
 
+
+        $admin = \Auth::getUser();
         // get all data.
         $sql = "SELECT * FROM activity WHERE activity_id = $activity_id";
         $act_data = DB::select($sql);
@@ -25,7 +43,7 @@ class ParticipationController extends Controller
         //dd($student_data);  
         $act_data =$this->arrayMap($act_data);
         $act_data = $act_data[0];
-        return view('Model.part_select')->with("act_data",$act_data);
+        return view('Model.part_select', compact('admin'))->with("act_data",$act_data);
 
         /*วิธีส่งแบบ2ตัว
 
@@ -33,6 +51,8 @@ class ParticipationController extends Controller
     }
 
     public function addToPart($activity_id){
+
+        $admin = \Auth::getUser();
         $part_stu_id    = Input::get('student_id');
         $part_act_id    = $activity_id;
 /*        $part_act_id    =Input::get('activity_id');*/
@@ -87,7 +107,7 @@ class ParticipationController extends Controller
 
         //เพิ่มหน้าสรุปผล
         /*return view('Model.part_result')->with("msg","add success.");*/
-        return view('Model.part_result')->with("act_data",$act_data);
+        return view('Model.part_result', compact('admin'))->with("act_data",$act_data);
 
 
 
@@ -95,6 +115,7 @@ class ParticipationController extends Controller
 
     public function viewdetail($activity_id){
 
+        $admin = \Auth::getUser();
         $sql = "SELECT * FROM activity WHERE activity_id = $activity_id";
         $act_data = DB::select($sql);
 
@@ -105,7 +126,7 @@ class ParticipationController extends Controller
         $a=0;
 
         $act_data = $act_data[0];
-        return view('Model.part_viewdetail')->with("act_data",$act_data);
+        return view('Model.part_viewdetail',compact('admin'))->with("act_data",$act_data);
 
          }
 
@@ -113,6 +134,7 @@ class ParticipationController extends Controller
     //ทดสอบเข้าร่วมแบบรายคน javascipt
     public function part_one($activity_id){
 
+        $admin = \Auth::getUser();
         // get all data.
         $sql = "SELECT * FROM activity WHERE activity_id = $activity_id";
         $act_data = DB::select($sql);
@@ -121,7 +143,7 @@ class ParticipationController extends Controller
         //dd($student_data);  
         $act_data =$this->arrayMap($act_data);
         $act_data = $act_data[0];
-        return view('Model.part_one')->with("act_data",$act_data);
+        return view('Model.part_one', compact('admin'))->with("act_data",$act_data);
 
         /*วิธีส่งแบบ2ตัว
 
@@ -131,6 +153,7 @@ class ParticipationController extends Controller
     public function addPartOne($activity_id)
     {
 
+        $admin = \Auth::getUser();
         $std   = Input::get('std');
         // dd($std);
         // $act_id =Input::get('activity_id');
@@ -181,13 +204,14 @@ class ParticipationController extends Controller
         //dd($student_data);  
         $act_data =$this->arrayMap($act_data);
         $act_data = $act_data[0];
-        return view('Model.part_result')->with("act_data",$act_data);
+        return view('Model.part_result', compact('admin'))->with("act_data",$act_data);
     }
 
 
 
     public function delpart($student_id,$act_id){
 
+        $admin = \Auth::getUser();
         $std = $student_id;
         $act = $act_id;
 
@@ -201,7 +225,7 @@ class ParticipationController extends Controller
         //dd($student_data);  
         $act_data =$this->arrayMap($act_data);
         $act_data = $act_data[0];
-        return view('Model.part_viewdetail')->with("act_data",$act_data);
+        return view('Model.part_viewdetail', compact('admin'))->with("act_data",$act_data);
 
 
 

@@ -19,30 +19,19 @@
     <script src="{{ asset('jquery-1.12.0.min.js') }}"></script>  <!-- เพิ่มพวกajaxมา -->
 </head>
 <body>
- <div id="wrapper">
+<div id="wrapper">
  <!-- Navigation -->
- <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
- <div class="navbar-header">
- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
- <span class="sr-only">Toggle navigation</span>
- <span class="icon-bar"></span>
- <span class="icon-bar"></span>
- <span class="icon-bar"></span>
- </button>
- <a class="navbar-brand" href="{{url('admin/index')}}">ระบบจัดการข้อมูล</a>
- </div>
- <!-- /.navbar-static-side -->
- </nav>
+ 
  <!-- Page Content -->
- <div id="page-wrapper">
- <div class="container-fluid">
+ 	
+ 		
  @yield('content')
  <!-- /.row -->
- </div>
+ 		
  <!-- /.container-fluid -->
- </div>
+ 	
  <!-- /#page-wrapper -->
- </div>
+</div>
  <!-- /#wrapper -->
  <!-- jQuery -->
  @include('admin.layouts.inc-scripts')

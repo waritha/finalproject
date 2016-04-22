@@ -6,12 +6,22 @@
     <script                 src="foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
-
+<div class="col-lg-12">
+ <h3 class="page-header">ข้อมูลกิจกรรม GE</h3>
+</div>
 
 <p>
-<div class="row">
+
+<?php 
+
+       /* echo "$year";*/
+        $dept_data = $admin->department_id;
+        /*echo "$dept_data";*/
+?>
+<!-- <div class="row">
 <a href="{{url('geform')}}">เพิ่มข้อมูลกิจกรรม</a>
-</div>
+</div> -->
+
 <div class="row">
 <input id="filter" type="text" class="form-control" placeholder="ป้อนคำค้นที่ต้องการ">
 </div>
@@ -30,6 +40,9 @@
 <?php
 
 $users = DB::table('ge_activity')->get();
+$users = DB::select("SELECT * FROM ge_activity WHERE ge_year = $year");
+
+
 foreach($users as $user){
 	?>
 	<tr>
@@ -38,7 +51,7 @@ foreach($users as $user){
 				$ge_id = $user->ge_id;
 			?>
 			<a href="{{ url('editge/'.$ge_id) }}">แก้ไข </a> |
-			<a href="{{ url('deletege/'.$ge_id) }}" onclick="return confirm('คุณแน่ใจนะว่าต้องการที่จะลบ?')">ลบ</a>  
+			<a href="{{ url('deletege/'.$ge_id. '/' .$year) }}" onclick="return confirm('คุณแน่ใจนะว่าต้องการที่จะลบ?')">ลบ</a>  
 		</td>
 		<td><?php echo $user->ge_year; ?></td>
         <td><?php echo $user->ge_name;?></td>

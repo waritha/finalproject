@@ -7,25 +7,45 @@ use Excel;
 class SettingController extends Controller
 {
 
+    public function __construct(){
+    $this->middleware('auth');
+    }
+
+    public function getIndex(){
+     $admin = \Auth::getUser();
+     
+     $department_id= $admin->deparment_id;
+
+    return view('admin.dashboard.index', compact('admin'));
+    }
+
 	public function arrayMap($transactions){
 		return array_map(function($object){
     		return (array) $object;
 		}, $transactions);
 	}
 
+    public function page_setting(){
+
+        $admin = \Auth::getUser();
+        return view('Model.setting', compact('admin'));
+    }
+
     public function set_del($year){
+        $admin = \Auth::getUser();
         $sql = "DELETE FROM setting WHERE year = $year";
         DB::select($sql);
-        return view('Model.setting');
+        return view('Model.setting', compact('admin'));
     }
 
     public function addformsetting(){
-        return view('Model.Insert.insert_setting');
+        $admin = \Auth::getUser();
+        return view('Model.Insert.insert_setting', compact('admin'));
     }
 
     public function addsetting()
     {
-
+        $admin = \Auth::getUser();
         $year               = Input::get('year');
         $fac_hr              =Input::get('fac_hr');
         $dept_hr             =Input::get('dept_hr');
@@ -47,12 +67,13 @@ class SettingController extends Controller
 
          DB::select($sql2);
         }
-        return view('Model.setting'); 
+        return view('Model.setting', compact('admin')); 
         
     }
 
     public function set_edit($year){
         
+        $admin = \Auth::getUser();
         // get all data.
         $sql = "SELECT * FROM setting WHERE year = $year";
         $fac_data = DB::select($sql);
@@ -61,11 +82,12 @@ class SettingController extends Controller
         //dd($student_data);  
         $fac_data =$this->arrayMap($fac_data);
         $fac_data = $fac_data[0];
-        return view('Model.Edit.edit_set')->with("fac_data",$fac_data);
+        return view('Model.Edit.edit_set', compact('admin'))->with("fac_data",$fac_data);
     }
 
     public function setedit(){
 
+        $admin = \Auth::getUser();
         $year                   = Input::get('year');
         $fac_hr                 =Input::get('fac_hr');
         $dept_hr                =Input::get('dept_hr');
@@ -80,7 +102,7 @@ class SettingController extends Controller
                                    club_hr = '$club_hr' WHERE year = $year";
 
          DB::select($sql);
-         return view('Model.setting');
+         return view('Model.setting', compact('admin'));
     }
     
 }

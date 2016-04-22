@@ -7,18 +7,41 @@ use Excel;
 class StudentController extends Controller
 {
 
+	public function __construct(){
+  		$this->middleware('auth');
+ 	}
+
+ 	public function getIndex(){
+
+     $admin = \Auth::getUser();
+     
+     $department_id= $admin->deparment_id;
+
+ 	return view('admin.dashboard.index', compact('admin'));
+ 	}
+
 	public function arrayMap($transactions){
 		return array_map(function($object){
     		return (array) $object;
 		}, $transactions);
 	}
-   	  
+   	 
+
+	public function page_student(){
+
+		$admin = \Auth::getUser();
+        return view('Model.student',  compact('admin'));
+    }
+
     public function form(){
-        return view('Model.Insert.insert_student');
+    	$admin = \Auth::getUser();
+        return view('Model.Insert.insert_student',  compact('admin'));
     }
 
     public function addStudent()
 	{
+
+		$admin = \Auth::getUser();
 
 		$std_id    = Input::get('student_id');
 		$std_first =Input::get('first_name');
@@ -33,14 +56,15 @@ class StudentController extends Controller
 											'$std_dept')";
 		try{
 		 	DB::select($sql);
-		 	return view('Model.student');
+		 	return view('Model.student',  compact('admin'));
 		}catch(\Illuminate\Database\QueryException $e){
-			return view('Model.Insert.insert_student')->with("msg","error");
+			return view('Model.Insert.insert_student',  compact('admin'))->with("msg","error");
 		}
 	}
     
     public function editStudent($student_id){
     	
+    	$admin = \Auth::getUser();
     	// get all data.
     	$sql = "SELECT * FROM student WHERE student_id = $student_id";
     	$student_data = DB::select($sql);
@@ -49,11 +73,13 @@ class StudentController extends Controller
     	//dd($student_data);  
     	$student_data =$this->arrayMap($student_data);
     	$student_data = $student_data[0];
-    	return view('Model.Edit.edit_student')->with("student_data",$student_data);
+    	return view('Model.Edit.edit_student',  compact('admin'))->with("student_data",$student_data);
     }
 
 
     public function updateStudent(){
+
+    	$admin = \Auth::getUser();
     	$std_id    			= Input::get('student_id');
 		//$std_title 			=Input::get('name_title');
 		$std_first 			=Input::get('first_name');
@@ -75,15 +101,17 @@ class StudentController extends Controller
 								   student_dept = '$std_dept' WHERE student_id = $std_id";
 
 		 DB::select($sql);
-		 return view('Model.student');
+		 return view('Model.student',  compact('admin'));
     }
 
     public function deleteStudent($std_id){
 
+    	$admin = \Auth::getUser();
+
     	$sql = "DELETE FROM student WHERE student_id = $std_id";
     	DB::select($sql);
 
-    	return view('Model.student');
+    	return view('Model.student',  compact('admin'));
 
     }
     

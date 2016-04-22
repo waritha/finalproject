@@ -7,18 +7,38 @@ use Excel;
 class ActivityController extends Controller
 {
 
+	public function __construct(){
+  	$this->middleware('auth');
+	}
+
+	public function getIndex(){
+     $admin = \Auth::getUser();
+     
+     $department_id= $admin->deparment_id;
+
+ 	return view('admin.dashboard.index', compact('admin'));
+ 	}
+
 	public function arrayMap($transactions){
 		return array_map(function($object){
     		return (array) $object;
 		}, $transactions);
 	}
-   	  
+   	
+   	public function page_activitys(){
+
+		$admin = \Auth::getUser();
+        return view('Model.activity', compact('admin'));
+    }
+
     public function form(){
-        return view('Model.Insert.insert_activity');
+    	$admin = \Auth::getUser();
+        return view('Model.Insert.insert_activity', compact('admin'));
     }
 
     public function addActivity()
 	{
+		$admin = \Auth::getUser();
 		$atv_id    = Input::get('activity_id');
 		$atv_name =Input::get('a_year');
 		$atv_year =Input::get('a_name');
@@ -41,11 +61,12 @@ class ActivityController extends Controller
 		 }
 
 
-		 return view('Model.activity')->with("msg","add success.");
+		 return view('Model.activity', compact('admin'))->with("msg","add success.");
 	}
     
     public function editactivity($activity_id){
     	
+    	$admin = \Auth::getUser();
     	// get all data.
     	$sql = "SELECT * FROM activity WHERE activity_id = $activity_id";
     	$act_data = DB::select($sql);
@@ -54,10 +75,12 @@ class ActivityController extends Controller
     	//dd($activity_data);  
     	$act_data =$this->arrayMap($act_data);
     	$act_data = $act_data[0];
-    	return view('Model.Edit.edit_activity')->with('act_data',$act_data);
+    	return view('Model.Edit.edit_activity', compact('admin'))->with('act_data',$act_data);
     }
 
     public function updateActivity(){
+
+    	$admin = \Auth::getUser();
 		$activity_id    = Input::get('activity_id');
 		$a_name =Input::get('a_name');
 		$a_year =Input::get('a_year');
@@ -88,12 +111,14 @@ class ActivityController extends Controller
 
 		 
 		
-		 return view('Model.activity')->with("msg","update success.");
+		 return view('Model.activity', compact('admin'))->with("msg","update success.");
 
     }
 
     public function deleteactivity($activity_id){
 
+
+    	$admin = \Auth::getUser();
     	$sql = "DELETE FROM activity WHERE activity_id = $activity_id";
     	$sql1 = "DELETE FROM mapping_ge_activity WHERE activity_id = $activity_id";	
     	DB::select($sql);
@@ -105,7 +130,7 @@ class ActivityController extends Controller
     	//continue;
 		//return ('del');
 		//clearData();
-    	return view('Model.activity')->with("msg","delete success.");
+    	return view('Model.activity', compact('admin'))->with("msg","delete success.");
 
     }
     

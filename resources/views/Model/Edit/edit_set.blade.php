@@ -31,7 +31,7 @@
 	
 	<div class="row">
 		<div class="large-2 columns">
-			<label>ชั่วโมงกิจกรรมบังคับ</label>
+			<label>จำนวนชั่วโมงของ</br>คณะวิทยาศาสตร์</label>
 			<input type="text" name="fac_hr"  value="<?php echo"$fac_hr"; ?>" >
 			
 		</div>
@@ -39,7 +39,7 @@
 
 	<div class="row">
 		<div class="large-2 columns">
-			<label>ชั่วโมงกิจกรรมที่เลือก</label>
+			<label>จำนวนชั่วโมงของ</br>ภาควิชา</label>
 			<input type="text" name="dept_hr"  value="<?php echo"$dept_hr"; ?>" >
 			
 		</div>
@@ -47,7 +47,7 @@
 
 	<div class="row">
 		<div class="large-2 columns">
-			<label>จำนวนชั่วโมงกิจกรรมทั้งหมด</label>
+			<label>จำนวนชั่วโมงของ</br>ชมรมและอื่นๆ</label>
 			<input type="text" name="club_hr"  value="<?php echo"$club_hr"; ?>" >
 			
 		</div>

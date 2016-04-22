@@ -62,7 +62,7 @@ for ($row = 8; $row <= $highestRow; ++$row) {
 //print_r($namedDataArray); 
 ?>
 <fieldset>
-    <legend>กรุณาเลือกฟล์เอ็กเซลจากสำนักทะเบียน(.xlsx)</legend>
+    <legend>กรุณาเลือกไฟล์เอ็กเซลจากสำนักทะเบียน(.xlsx)</legend>
 <div class="row">
     <form name="form1" method="post" action="save_file.php" enctype="multipart/form-data">
         <input type="file" name="filUpload" class="button info" >
