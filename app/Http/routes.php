@@ -1,5 +1,10 @@
 <?php
 
+Route::get('testexportpdf', function(){
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('<h1>Test</h1>');
+    return $pdf->stream();
+});
 //Form backup
 Route::get('/', 'Auth\AuthController@getLogin');
 // Authentication routes...
